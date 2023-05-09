@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 import socket
 import time
@@ -8,6 +9,11 @@ from typing import Union
 
 HOST = 'localhost'
 PORT = 9999
+
+user_path = './user_logs'
+
+if not os.path.exists(user_path):
+    os.mkdir(user_path)
 
 
 def receive(client: socket.socket) -> None:

@@ -1,4 +1,5 @@
 import itertools
+import os
 import socket
 import logging
 import sys
@@ -7,6 +8,10 @@ from contextlib import contextmanager
 from threading import Thread
 from typing import Union
 
+sys_path = './sys_logs'
+
+if not os.path.exists(sys_path):
+    os.mkdir(sys_path)
 
 logging.basicConfig(level=logging.DEBUG,
                     filename='sys_logs/system.log',
@@ -156,7 +161,7 @@ def connect_socket(param1, param2) -> Union[None, socket.socket]:
     """
 
     for attempt in range(RETRY):
-        logger.debug(f'Attempt ({attempt+1})')
+        logger.debug(f'Attempt ({attempt+1}) to connect to socket...')
         s = socket.socket(param1, param2)
 
         try:
